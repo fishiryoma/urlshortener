@@ -4,9 +4,9 @@ const app = express();
 const port = 3000;
 
 app.get("/", (req, res) => {
-  res.redirect("/url_shorten");
+  res.redirect("/url_shortener");
 });
-app.get("/url_shorten", (req, res) => {
+app.get("/url_shortener", (req, res) => {
   res.render("index");
 });
 

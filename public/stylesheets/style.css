@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.container {
+  margin: 100px auto;
+  max-width: 500px;
+}
+
+.input {
+  background-color: #e9ecef;
+  border: none;
+}
+
+.visible {
+  display: none;
+}
