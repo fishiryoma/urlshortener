@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="card mx-auto" style="width: 25em;">
+<div class="container d-flex">
+  <div class="card align-self-start">
     <h4 class="mx-auto fs-5 fw-bold mt-5">URL Shortener</h4>
     <img
       src="/img/ExportedContentImage_00.png"
@@ -7,15 +7,14 @@
       alt="..."
       style="width: 40%;"
     />
-
+    {{! 用IF判斷要顯示輸入表單還是已產生的短網址頁面 }}
     {{#if shortUrl}}
 
       <div class="link-msg px-3 d-flex flex-column">
-        <p class="success fs-6 fw-bold">Success! Please use this link:</p>
+        <p class="success mb-0 fs-6 fw-bold">Success! Please use this link:</p>
         <a
           href="..."
-          class="d-block language-html"
-          data-lang="html"
+          class="d-block"
           id="short-url"
         >http://localhost:3000/{{shortUrl}}</a>
         <div class="align-self-center mt-3 mb-4">
@@ -28,6 +27,7 @@
         navigator.clipboard.writeText(document.querySelector('#short-url').innerText)
         .then( () => alert('copied')) .catch( error=>console.log(error) ) }
       </script>
+
     {{else}}
 
       <div class="card-body" style="width: 100%;">
@@ -40,12 +40,12 @@
             aria-label="Username"
             aria-describedby="basic-addon1"
             style="width: 90%;"
+            {{! 驗證input必須被輸入 }}
             required
           />
           <button
             type="submit"
-            href="#"
-            class="btn btn-outline-primary align-self-center mt-3 mb-4"
+            class="btn btn-outline-primary align-self-center mt-3"
             style="width: 40%;"
           >Shorten</button>
         </form>
@@ -54,4 +54,24 @@
     {{/if}}
 
   </div>
+  {{! 驗證JSON檔案是否不為空值 }}
+  {{#if length}}
+    <table class="table table-hover table-striped ms-3">
+      <thead class="align-middle">
+        <tr class="table-dark text-center">
+          <th scope="col">short</th>
+          <th scope="col">origin</th>
+        </tr>
+      </thead>
+      <tbody class="align-middle">
+        {{! 顯示所有JSON裡的數據 }}
+        {{#each data as |data|}}
+          <tr>
+            <td>{{this}}</td>
+            <td>{{@key}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
 </div>

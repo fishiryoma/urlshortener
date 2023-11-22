@@ -7,10 +7,18 @@
 
 .container {
   margin: 100px auto;
-  max-width: 500px;
+  max-width: 900px;
 }
 
 .input {
   background-color: #e9ecef;
   border: none;
+}
+
+table {
+  font-size: 14px;
+}
+
+table th {
+  text-transform: uppercase;
 }
