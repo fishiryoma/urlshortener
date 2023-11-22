@@ -7,32 +7,51 @@
       alt="..."
       style="width: 40%;"
     />
-    <div class="input-box">
-      <div class="card-body d-flex flex-column" style="width: 100%;">
-        <input
-          type="text"
-          class="form-control align-self-center input"
-          placeholder="Input URL here"
-          aria-label="Username"
-          aria-describedby="basic-addon1"
-          style="width: 90%;"
-        />
-        <a
-          href="#"
-          class="btn btn-outline-primary align-self-center mt-3 mb-4"
-          style="width: 40%;"
-        >Shorten</a>
-      </div>
-      <div class="link-msg visible">
-        <div class="link-msg px-3 d-flex flex-column">
-          <p class="success fs-6 fw-bold">Success! Please use this link:</p>
-          <a href="..." class="d-block">...</a>
-          <a
-            href="#"
-            class="btn btn-primary align-self-center mt-3 mb-4"
-            style="width: 30%;"
-          >Copy</a></div></div>
 
-    </div>
+    {{#if shortUrl}}
+
+      <div class="link-msg px-3 d-flex flex-column">
+        <p class="success fs-6 fw-bold">Success! Please use this link:</p>
+        <a
+          href="..."
+          class="d-block language-html"
+          data-lang="html"
+          id="short-url"
+        >http://localhost:3000/{{shortUrl}}</a>
+        <div class="align-self-center mt-3 mb-4">
+          <button class="btn btn-primary" onclick="copy()">Copy</button>
+          <a href="http://localhost:3000/" class="btn btn-primary">Try More</a>
+        </div>
+      </div>
+      <script>
+        function copy(){
+        navigator.clipboard.writeText(document.querySelector('#short-url').innerText)
+        .then( () => alert('copied')) .catch( error=>console.log(error) ) }
+      </script>
+    {{else}}
+
+      <div class="card-body" style="width: 100%;">
+        <form action="/url_shortener" method="POST" class="d-flex flex-column">
+          <input
+            type="url"
+            name="inputUrl"
+            class="form-control align-self-center input"
+            placeholder="Input URL here"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            style="width: 90%;"
+            required
+          />
+          <button
+            type="submit"
+            href="#"
+            class="btn btn-outline-primary align-self-center mt-3 mb-4"
+            style="width: 40%;"
+          >Shorten</button>
+        </form>
+      </div>
+
+    {{/if}}
+
   </div>
 </div>
