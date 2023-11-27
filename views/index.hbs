@@ -13,21 +13,47 @@
       <div class="link-msg px-3 d-flex flex-column">
         <p class="success mb-0 fs-6 fw-bold">Success! Please use this link:</p>
         <a
-          href="..."
+          href="http://localhost:3000/{{shortUrl}}"
+          target="_blank"
           class="d-block"
           id="short-url"
         >http://localhost:3000/{{shortUrl}}</a>
         <div class="align-self-center mt-3 mb-4">
-          <button class="btn btn-primary" onclick="copy()">Copy</button>
+          <button class="btn btn-primary" id="copy-btn">Copy</button>
           <a href="http://localhost:3000/" class="btn btn-primary">Try More</a>
         </div>
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="copyMsg"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content d-flex">
+              <div class="modal-body text-center fs-3">
+                Copied
+              </div>
+              <button
+                type="button"
+                class="btn btn-outline-primary mx-auto mb-3 p-1"
+                data-bs-dismiss="modal"
+                style="mx-width: 50%; font-size: 12px;"
+              >Close</button>
+            </div>
+          </div>
+        </div>
+
       </div>
       <script>
-        function copy(){
-        navigator.clipboard.writeText(document.querySelector('#short-url').innerText)
-        .then( () => alert('copied')) .catch( error=>console.log(error) ) }
+        const copyBtn = document.querySelector('#copy-btn');
+        copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(document.querySelector('#short-url').textContent).then(()=>
+        { const copyMsgModal = new
+        bootstrap.Modal(document.querySelector('#copyMsg'));
+        copyMsgModal.show(); }).catch((error) => console.log(error)) });
       </script>
-
     {{else}}
 
       <div class="card-body" style="width: 100%;">

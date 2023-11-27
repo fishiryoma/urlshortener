@@ -49,8 +49,10 @@ app.post("/url_shortener", (req, res) => {
 // GET導回原網址
 app.get("/:shortUrl", (req, res) => {
   const shortUrl = req.params.shortUrl;
+  console.log(shortUrl);
   // 從data裡面搜尋
   const originalUrl = Object.keys(data).find((key) => data[key] === shortUrl);
+  console.log(originalUrl);
   if (originalUrl) {
     // 導回原網址或發出錯誤訊息
     res.redirect(originalUrl);
